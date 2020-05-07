@@ -60,7 +60,7 @@ class LeftSideBar extends Component {
             dots: false,
             focusOnSelect: true
         };
-
+        let img = item.images.split(',');
         return (
             <div>
                 {/*SEO Support*/}
@@ -105,13 +105,13 @@ class LeftSideBar extends Component {
                                         <div className="row">
                                             <div className="col-lg-6 product-thumbnail">
                                                 <Slider {...products} asNavFor={this.state.nav2} ref={slider => (this.slider1 = slider)} className="product-slick">
-                                                    {item.variants?
-                                                    item.variants.map((vari, index) =>
+                                                    {item.images?
+                                                    img.map((vari, index) =>
                                                        <div key={index}>
-                                                           <ImageZoom image={vari.images} />
+                                                           <ImageZoom image={vari} />
                                                        </div>
                                                     ):
-                                                    item.pictures.map((vari, index) =>
+                                                    img.map((vari, index) =>
                                                         <div key={index}>
                                                             <ImageZoom image={vari} />
                                                         </div>

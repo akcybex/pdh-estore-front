@@ -25,7 +25,6 @@ class NavBar extends Component {
   }
 
   openNav() {
-    console.log("open");
     this.setState({ navClose: { right: "0px" } });
   }
   closeNav() {

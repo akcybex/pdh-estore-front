@@ -18,7 +18,7 @@ export const getBrands = (products) => {
 export const getColors = (products) => {
     var uniqueColors = [];
     products.map((product, index) => {
-        if(product.colors) {
+        if (product.colors) {
             product.colors.map((color) => {
                 if (uniqueColors.indexOf(color) === -1) {
                     uniqueColors.push(color);
@@ -40,22 +40,22 @@ export const getMinMaxPrice = (products) => {
         max = (v > max) ? v : max;
     })
 
-    return {'min':min, 'max':max};
+    return { 'min': min, 'max': max };
 }
 
 export const getVisibleproducts = (data, { brand, color, value, sortBy }) => {
     return data.products.filter(product => {
 
         let brandMatch;
-        if(product.tags)
+        if (product.tags)
             brandMatch = product.tags.some(tag => brand.includes(tag))
         else
             brandMatch = true;
 
         let colorMatch;
-        if(color && product.colors) {
+        if (color && product.colors) {
             colorMatch = product.colors.includes(color)
-        }else{
+        } else {
             colorMatch = true;
         }
 
@@ -74,7 +74,7 @@ export const getVisibleproducts = (data, { brand, color, value, sortBy }) => {
             return product1.name.localeCompare(product2.name);
         } else if (sortBy === 'DescOrder') {
             return product2.name.localeCompare(product1.name);
-        } else{
+        } else {
             return product2.id > product1.id ? -1 : 1;
         }
     });
@@ -82,8 +82,9 @@ export const getVisibleproducts = (data, { brand, color, value, sortBy }) => {
 
 export const getCartTotal = cartItems => {
     var total = 0;
-    for(var i=0; i<cartItems.length; i++){
-        total += parseInt(cartItems[i].qty, 10)*parseInt((cartItems[i].price*cartItems[i].discount/100), 10);
+    for (var i = 0; i < cartItems.length; i++) {
+        // total += parseInt(cartItems[i].qty, 10) * parseInt((cartItems[i].price * cartItems[i].discount / 100), 10);
+        total += parseInt(cartItems[i].qty, 10) * parseInt((cartItems[i].price), 10);
     }
     return total;
 }
@@ -93,15 +94,19 @@ export const getTrendingTagCollection = (products, type, tag) => {
     const items = products.filter(product => {
         return product.category === type && product.tags.includes(tag);
     })
-    return items.slice(0,8)
+    return items.slice(0, 8)
 }
 
 // Get Trending Collection
 export const getTrendingCollection = (products, type) => {
+    // console.log('TRAND', products,'T', type)
     const items = products.filter(product => {
-        return product.category === type;
+        // return product.category === type;
+        console.log('*', product)
+        return product;
     })
-    return items.slice(0,8)
+    console.log('***', items)
+    return items.slice(0, 8)
 }
 
 // Get Special 5 Collection
@@ -109,7 +114,7 @@ export const getSpecialCollection = (products, type) => {
     const items = products.filter(product => {
         return product.category === type;
     })
-    return items.slice(0,5)
+    return items.slice(0, 5)
 }
 
 // Get TOP Collection
@@ -117,7 +122,7 @@ export const getTopCollection = products => {
     const items = products.filter(product => {
         return product.rating > 4;
     })
-    return items.slice(0,8)
+    return items.slice(0, 8)
 }
 
 // Get New Products
@@ -126,7 +131,7 @@ export const getNewProducts = (products, type) => {
         return product.new === true && product.category === type;
     })
 
-    return items.slice(0,8)
+    return items.slice(0, 8)
 }
 
 // Get Related Items
@@ -135,7 +140,7 @@ export const getRelatedItems = (products, type) => {
         return product.category === type;
     })
 
-    return items.slice(0,4)
+    return items.slice(0, 4)
 
 }
 
@@ -145,7 +150,7 @@ export const getBestSellerProducts = (products, type) => {
         return product.sale === true && product.category === type;
     })
 
-    return items.slice(0,8)
+    return items.slice(0, 8)
 }
 
 // Get Best Seller
@@ -154,7 +159,7 @@ export const getBestSeller = products => {
         return product.sale === true;
     })
 
-    return items.slice(0,8)
+    return items.slice(0, 8)
 }
 
 // Get Mens Wear
@@ -163,7 +168,7 @@ export const getMensWear = products => {
         return product.category === 'men';
     })
 
-    return items.slice(0,8)
+    return items.slice(0, 8)
 }
 
 // Get Womens Wear
@@ -172,7 +177,7 @@ export const getWomensWear = products => {
         return product.category === 'women';
     })
 
-    return items.slice(0,8)
+    return items.slice(0, 8)
 }
 
 // Get Single Product

@@ -66,7 +66,9 @@ class DetailsWithPrice extends Component {
                     <h4>
                         <del>{symbol}{item.price}</del>
                         <span>{item.discount}% off</span></h4>
-                    <h3>{symbol}{item.price-(item.price*item.discount/100)} </h3>
+                    <h3>{symbol} {parseInt(item.price)}
+                    {/* {item.price-(item.price*item.discount/100)}  */}
+                    </h3>
                     {item.variants?
                     <ul >
                         <Slider {...colorsnav} asNavFor={this.props.navOne} ref={slider => (this.slider1 = slider)} className="color-variant">
@@ -104,9 +106,10 @@ class DetailsWithPrice extends Component {
                                 </div>
                                 <div className="size-box">
                             <ul>
-                                {item.size.map((size, i) => {
+                                {/* {item.size.map((size, i) => {
                                     return <li key={i}><a href="#">{size}</a></li>
-                                })}
+                                })} */}
+                                {item.size}
                             </ul>
                         </div>
                             </div>:''}

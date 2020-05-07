@@ -1,9 +1,9 @@
 import shop from '../api/shop'
 import * as types from '../constants/ActionTypes'
 import store from "../store";
-import { toast  } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
-
+import API from '../utils/api'
 export const fetchProductsBegin = () => ({
     type: types.FETCH_PRODUCTS_BEGIN
 });
@@ -16,10 +16,14 @@ export const receiveProducts = products => ({
 
 export const getAllProducts = () => dispatch => {
     dispatch(fetchProductsBegin());
-    shop.getProducts(products => {
-        dispatch(receiveProducts(products));
-        return products;
-    })
+    // shop.getProducts(products => {
+    //     dispatch(receiveProducts(products));
+    //     return products;
+    // })
+    API.get('/products').then((res) => {
+        // console.log('RES', res.data)
+        dispatch(receiveProducts(res.data));
+    }).catch(err => console.log('ERR', err))
 }
 export const fetchSingleProduct = productId => ({
     type: types.FETCH_SINGLE_PRODUCT,
@@ -30,12 +34,12 @@ export const fetchSingleProduct = productId => ({
 
 
 //it seems that I should probably use this as the basis for "Cart"
-export const addToCart = (product,qty) => (dispatch) => {
+export const addToCart = (product, qty) => (dispatch) => {
     toast.success("Item Added to Cart");
-        dispatch(addToCartUnsafe(product, qty))
+    dispatch(addToCartUnsafe(product, qty))
 
 }
-export const addToCartAndRemoveWishlist = (product,qty) => (dispatch) => {
+export const addToCartAndRemoveWishlist = (product, qty) => (dispatch) => {
     toast.success("Item Added to Cart");
     dispatch(addToCartUnsafe(product, qty));
     dispatch(removeFromWishlist(product));
@@ -52,7 +56,7 @@ export const removeFromCart = product_id => (dispatch) => {
         product_id
     })
 };
-export const incrementQty = (product,qty) => (dispatch) => {
+export const incrementQty = (product, qty) => (dispatch) => {
     toast.success("Item Added to Cart");
     dispatch(addToCartUnsafe(product, qty))
 
@@ -61,8 +65,9 @@ export const decrementQty = productId => (dispatch) => {
     toast.warn("Item Decrement Qty to Cart");
 
     dispatch({
-    type: types.DECREMENT_QTY,
-    productId})
+        type: types.DECREMENT_QTY,
+        productId
+    })
 };
 
 

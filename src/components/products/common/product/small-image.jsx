@@ -19,18 +19,19 @@ class SmallImages extends Component {
         const { item, settings } = this.props;
 
         var productsnav = settings;
+        let img= item.images.split(',');
 
         return (
             <div className="row">
                 <div className="col-12 p-0">
                     <Slider {...productsnav} asNavFor={this.props.navOne} ref={slider => (this.slider2 = slider)} className="slider-nav">
-                        {item.variants?
-                        item.variants.map((vari, index) =>
+                        {item.images?
+                        img.map((vari, index) =>
                             <div key={index}>
                                 <img src={`${vari.images}`} key={index} alt=""  className="img-fluid" />
                             </div>
                         ):
-                            item.pictures.map((vari, index) =>
+                            img.map((vari, index) =>
                                 <div key={index}>
                                     <img src={`${vari}`} key={index} alt=""  className="img-fluid" />
                                 </div>
