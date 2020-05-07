@@ -29,12 +29,12 @@ class Login extends Component {
     } else if (!validateEmail(email)) {
       toast.error("Invalid Email");
     } else {
-      API.post(`/login`, this.state)
+      API.post(`/login`, this.state)  
         .then((res) => {
           toast.success("Logged Successfully");
-          // console.log("RES", res.data);
+          // console.log("RES", res.data[0]);
           localStorage.setItem("logged", JSON.stringify(res.data[0]));
-          // window.location.replace("/");
+          window.location.replace("/");
         })
         .catch((err) => {
           // console.log('ER',err)

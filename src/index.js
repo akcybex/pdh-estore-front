@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { ScrollContext } from 'react-router-scroll-4';
 import { IntlReducer as Intl, IntlProvider } from 'react-redux-multilingual'
 import './index.scss';
@@ -65,8 +65,13 @@ class Root extends React.Component {
 
                                     <Route path={"/pages/about-us"} component={aboutUs} />
                                     <Route path={"/pages/contact"} component={Contact} />
-                                    <Route path={"/pages/login"} component={Login} />
-                                    <Route path={"/pages/register"} component={Register} />
+                                    {
+                                        localStorage.getItem('logged') ?
+                                            <Redirect to="/" /> : <div>
+                                                <Route path={"/pages/login"} component={Login} />
+                                                <Route path={"/pages/register"} component={Register} />
+                                            </div>
+                                    }
 
 
                                     {/*Routes For custom Features*/}
