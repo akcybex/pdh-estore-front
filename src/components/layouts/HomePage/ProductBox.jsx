@@ -25,8 +25,9 @@ class ProductBox extends Component {
     for (var i = 0; i < product.rating; i++) {
       RatingStars.push(<i className="fa fa-star" key={i} />);
     }
-    console.log('P',product)
-    let img = product.images.split(",");
+    console.log("P", product);
+    // let img = product.images.split(",");
+    let img = product.images ? product.images.split(",") : [];
     return (
       <div className="product-box">
         <div className="img-wrapper">

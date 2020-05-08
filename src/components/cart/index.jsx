@@ -45,7 +45,7 @@ class cartComponent extends Component {
                       </tr>
                     </thead>
                     {cartItems.map((item, index) => {
-                      let img = item.images.split(",");
+                      let img = item.images ? item.images.split(",") : [];
                       return (
                         <tbody key={index}>
                           <tr>

@@ -1,46 +1,61 @@
-
-import React, { Component } from 'react';
-import Slider from 'react-slick';
+import React, { Component } from "react";
+import Slider from "react-slick";
 
 class SmallImages extends Component {
-    constructor (props) {
-        super(props);
-        this.state = {
-            nav2: null
-        }
-    }
-    componentDidMount() {
-        this.setState({
-            nav2: this.slider2
-        });
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      nav2: null,
+    };
+  }
+  componentDidMount() {
+    this.setState({
+      nav2: this.slider2,
+    });
+  }
 
-    render() {
-        const { item, settings } = this.props;
+  render() {
+    const { item, settings } = this.props;
 
-        var productsnav = settings;
-        let img= item.images.split(',');
+    var productsnav = settings;
+    // let img= item.images.split(',');
+    let img = item.images ? item.images.split(",") : [];
 
-        return (
-            <div className="row">
-                <div className="col-12 p-0">
-                    <Slider {...productsnav} asNavFor={this.props.navOne} ref={slider => (this.slider2 = slider)} className="slider-nav">
-                        {item.images?
-                        img.map((vari, index) =>
-                            <div key={index}>
-                                <img src={`${vari.images}`} key={index} alt=""  className="img-fluid" />
-                            </div>
-                        ):
-                            img.map((vari, index) =>
-                                <div key={index}>
-                                    <img src={`${vari}`} key={index} alt=""  className="img-fluid" />
-                                </div>
-                            )}
-                    </Slider>
-                </div>
-            </div>
-        );
-    }
+    return (
+      <div className="row">
+        <div className="col-12 p-0">
+          <Slider
+            {...productsnav}
+            asNavFor={this.props.navOne}
+            ref={(slider) => (this.slider2 = slider)}
+            className="slider-nav"
+          >
+            {item.images
+              ? img.map((vari, index) => (
+                  <div key={index}>
+                    <img
+                      src={`${vari.images}`}
+                      key={index}
+                      alt=""
+                      className="img-fluid"
+                    />
+                  </div>
+                ))
+              : img.map((vari, index) => (
+                  <div key={index}>
+                    <img
+                      src={`${vari}`}
+                      key={index}
+                      alt=""
+                      className="img-fluid"
+                    />
+                  </div>
+                ))}
+          </Slider>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default SmallImages;
