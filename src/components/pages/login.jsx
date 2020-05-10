@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
 import Breadcrumb from "../common/breadcrumb";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
@@ -29,7 +30,7 @@ class Login extends Component {
     } else if (!validateEmail(email)) {
       toast.error("Invalid Email");
     } else {
-      API.post(`/login`, this.state)  
+      API.post(`/login`, this.state)
         .then((res) => {
           toast.success("Logged Successfully");
           // console.log("RES", res.data[0]);
@@ -103,9 +104,9 @@ class Login extends Component {
                     quick and easy. It allows you to be able to order from our
                     shop. To start shopping click register.
                   </p>
-                  <a href="#" className="btn btn-solid">
+                  <Link to="/pages/register" className="btn btn-solid">
                     Create an Account
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

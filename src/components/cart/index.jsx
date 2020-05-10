@@ -194,7 +194,14 @@ class cartComponent extends Component {
                   </Link>
                 </div>
                 <div className="col-6">
-                  <Link to={"/checkout"} className="btn btn-solid">
+                  <Link
+                    to={"/checkout"}
+                    onClick={() =>
+                      !localStorage.getItem("logged") &&
+                      alert("Login Required!")
+                    }
+                    className="btn btn-solid"
+                  >
                     check out
                   </Link>
                 </div>

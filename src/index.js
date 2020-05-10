@@ -9,7 +9,9 @@ import './index.scss';
 // Import custom components
 import store from './store';
 import { getAllProducts } from './actions';
-
+//Custom routes
+import PrivateRoute from './utils/privateRoutes';
+import ProtectedRoute from './utils/protectedRoute'
 // Main
 import Home from './components/layouts/HomePage/main';
 
@@ -65,19 +67,14 @@ class Root extends React.Component {
 
                                     <Route path={"/pages/about-us"} component={aboutUs} />
                                     <Route path={"/pages/contact"} component={Contact} />
-                                    {
-                                        localStorage.getItem('logged') ?
-                                            <Redirect to="/" /> : <div>
-                                                <Route path={"/pages/login"} component={Login} />
-                                                <Route path={"/pages/register"} component={Register} />
-                                            </div>
-                                    }
-
-
+                                    {/* Auth Private Routes */}
+                                    <PrivateRoute path={"/pages/login"} component={Login} />
+                                    <PrivateRoute path={"/pages/register"} component={Register} />
+                                    <ProtectedRoute path={"/checkout"} component={checkOut} />
                                     {/*Routes For custom Features*/}
                                     <Route path={"/cart"} component={Cart} />
                                     <Route path={"/wishlist"} component={wishList} />
-                                    <Route path={"/checkout"} component={checkOut} />
+                                    {/* <Route path={"/checkout"} component={checkOut} /> */}
                                     <Route path={"/order-success"} component={orderSuccess} />
                                     <Route path={"/sales/orders"} component={aboutUs} />
                                 </Layout>

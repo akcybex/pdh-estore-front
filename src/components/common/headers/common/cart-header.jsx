@@ -8,13 +8,19 @@ const CartHeader = ({ item, total, symbol, removeFromCart }) => {
   return (
     <li>
       <div className="media">
-        <Link to={`${process.env.PUBLIC_URL}/product/${item.id}`}>
+        <Link to={"/cart"}>
           <img alt="" className="mr-3" src={`${img[0]}`} />
         </Link>
+        {/* <Link to={`${process.env.PUBLIC_URL}/product/${item.id}`}>
+          <img alt="" className="mr-3" src={`${img[0]}`} />
+        </Link> */}
         <div className="media-body">
-          <Link to={`${process.env.PUBLIC_URL}/product/${item.id}`}>
+          <Link to={"/cart"}>
             <h4>{item.name}</h4>
           </Link>
+          {/* <Link to={`${process.env.PUBLIC_URL}/product/${item.id}`}>
+            <h4>{item.name}</h4>
+          </Link> */}
           <h4>
             <span>
               {item.qty} x {symbol} {parseInt(item.price)}
