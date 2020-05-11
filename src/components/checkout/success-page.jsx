@@ -139,10 +139,10 @@ class orderSuccess extends Component {
                   <div className="col-sm-6">
                     <h4>shipping address</h4>
                     <ul className="order-detail">
-                      <li>gerg harvell</li>
-                      <li>568, suite ave.</li>
-                      <li>Austrlia, 235153</li>
-                      <li>Contact No. 987456321</li>
+                      <li>{payment.country}</li>
+                      <li>{payment.city}</li>
+                      <li>{payment.address}</li>
+                      <li>Contact No. {payment.phone}</li>
                     </ul>
                   </div>
 

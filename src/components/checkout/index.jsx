@@ -112,9 +112,8 @@ class checkOut extends Component {
         user_id: user.id,
         billing_address: JSON.stringify(billing),
         order_items: JSON.stringify(this.props.cartItems),
-        amount: `${this.props.symbol} ${this.props.total}`,
+        amount: this.props.total,
       };
-      console.log("OBJ", obj);
       API.post("/orders/place", obj)
         .then((res) => {
           this.props.history.push({
@@ -127,7 +126,7 @@ class checkOut extends Component {
             },
           });
           this.props.emptyCart();
-          console.log("RES", res);
+          // console.log("RES", res);
         })
         .catch((err) => console.log("ERR", err));
     } else {
