@@ -2,7 +2,8 @@ import {
     ADD_TO_CART,
     REMOVE_FROM_CART,
     INCREMENT_QTY,
-    DECREMENT_QTY
+    DECREMENT_QTY,
+    EMPTY_CART
 } from "../constants/ActionTypes";
 
 
@@ -54,6 +55,10 @@ export default function cartReducer(state = {
         case REMOVE_FROM_CART:
             return {
                 cart: state.cart.filter(item => item.id !== action.product_id.id)
+            }
+        case EMPTY_CART:
+            return {
+                cart: []
             }
 
         default:

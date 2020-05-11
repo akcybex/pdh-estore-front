@@ -70,7 +70,12 @@ export const decrementQty = productId => (dispatch) => {
     })
 };
 
-
+// Empty Cart
+export const emptyCart = () => (dispatch) => {
+    dispatch({
+        type: types.EMPTY_CART
+    })
+};
 
 //it seems that I should probably use this as the basis for "Wishlist"
 export const addToWishlist = (product) => (dispatch) => {
