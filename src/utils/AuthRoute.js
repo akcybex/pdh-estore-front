@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
+const AuthRoute = ({ component: Component, ...rest }) => {
     let logged = localStorage.getItem('logged');
     // Show the component only when the user is logged in
     // Otherwise, redirect the user to /signin page
@@ -14,4 +14,4 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     );
 };
 
-export default PrivateRoute;
+export default AuthRoute;

@@ -10,7 +10,7 @@ import './index.scss';
 import store from './store';
 import { getAllProducts } from './actions';
 //Custom routes
-import PrivateRoute from './utils/privateRoutes';
+import AuthRoute from './utils/AuthRoute';
 import ProtectedRoute from './utils/protectedRoute'
 // Main
 import Home from './components/layouts/HomePage/main';
@@ -39,6 +39,7 @@ import Cart from './components/cart'
 import wishList from './components/wishlist'
 import checkOut from './components/checkout'
 import orderSuccess from './components/checkout/success-page'
+import MyOrder from './components/myorder/myorder'
 
 
 class Root extends React.Component {
@@ -56,11 +57,11 @@ class Root extends React.Component {
                                 <Layout>
 
                                     {/*Routes For Features (Product Collection) */}
-                                    <Route path={"/collection/t-shirt"} component={TShirtCollection} />
-                                    <Route path={"/collection/logo"} component={LogoCollection} />
-                                    <Route path={"/collection/business-card"} component={BcardCollection} />
-                                    <Route path={"/collection/flyer-designs"} component={Flyers} />
-                                    <Route path={"/collection/brochure-designs"} component={Brochures} />
+                                    <Route path={"/collection/t-shirt/:category"} component={TShirtCollection} />
+                                    <Route path={"/collection/logo/:category"} component={LogoCollection} />
+                                    <Route path={"/collection/business-card/:category"} component={BcardCollection} />
+                                    <Route path={"/collection/flyer-designs/:category"} component={Flyers} />
+                                    <Route path={"/collection/brochure-designs/:category"} component={Brochures} />
 
                                     {/*Routes For Single Product*/}
                                     <Route path={"/left-sidebar/product/:id"} component={LeftSideBar} />
@@ -68,14 +69,15 @@ class Root extends React.Component {
                                     <Route path={"/pages/about-us"} component={aboutUs} />
                                     <Route path={"/pages/contact"} component={Contact} />
                                     {/* Auth Private Routes */}
-                                    <PrivateRoute path={"/pages/login"} component={Login} />
-                                    <PrivateRoute path={"/pages/register"} component={Register} />
+                                    <AuthRoute path={"/pages/login"} component={Login} />
+                                    <AuthRoute path={"/pages/register"} component={Register} />
                                     <ProtectedRoute path={"/checkout"} component={checkOut} />
                                     {/*Routes For custom Features*/}
                                     <Route path={"/cart"} component={Cart} />
                                     <Route path={"/wishlist"} component={wishList} />
                                     {/* <Route path={"/checkout"} component={checkOut} /> */}
                                     <Route path={"/order-success"} component={orderSuccess} />
+                                    <Route path={"/my-order"} component={MyOrder} />
                                     <Route path={"/sales/orders"} component={aboutUs} />
                                 </Layout>
                             </Switch>

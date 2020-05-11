@@ -87,28 +87,28 @@ class NavBar extends Component {
                   <span className="sub-arrow" />
                 </Link>
                 <ul className="nav-submenu">
-                  {this.state.navs.map((item) => (
+                  {/* {this.state.navs.map((item) => (
                     <li key={item.id}>
                       <Link to={"/collection/t-shirt"}>{item.name}</Link>
                     </li>
-                  ))}
-                  {/* <li>
-                    <Link to={"/collection/t-shirt"}>T-Shirts</Link>
+                  ))} */}
+                  <li>
+                    <Link to={`/collection/t-shirt/${1}`}>T-Shirts</Link>
                   </li>
                   <li>
-                    <Link to={"/collection/logo"}>Logos</Link>
+                    <Link to={`/collection/logo/${2}`}>Logos</Link>
                   </li>
                   <li>
-                    <Link to={"/collection/business-card"}>Business Cards</Link>
+                    <Link to={`/collection/business-card/${3}`}>Business Cards</Link>
                   </li>
                   <li>
-                    <Link to={"/collection/flyer-designs"}>Flyers Designs</Link>
+                    <Link to={`/collection/flyer-designs/${4}`}>Flyers Designs</Link>
                   </li>
                   <li>
-                    <Link to={"/collection/brochure-designs"}>
+                    <Link to={`/collection/brochure-designs/${5}`}>
                       Brochure Designs
                     </Link>
-                  </li> */}
+                  </li>
                 </ul>
               </li>
               <li>

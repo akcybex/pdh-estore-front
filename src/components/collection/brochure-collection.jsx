@@ -89,7 +89,7 @@ class Brochures extends Component {
                                                         </div>
 
                                                         {/*Products Listing Component*/}
-                                                        <ProductListing colSize={this.state.layoutColumns}/>
+                                                        <ProductListing colSize={this.state.layoutColumns} category= {this.props.match.params.category}/>
 
                                                     </div>
                                                 </div>

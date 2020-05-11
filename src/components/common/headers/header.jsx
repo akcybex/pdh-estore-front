@@ -113,7 +113,7 @@ class Header extends Component {
                 <div className="col-lg-6 text-right">
                   <ul className="header-dropdown">
                     <li className="mobile-wishlist">
-                      <Link to={"#"}>
+                      <Link to={"/wishlist"}>
                         <i className="fa fa-heart" aria-hidden="true" />
                         Wishlist
                       </Link>
@@ -123,6 +123,11 @@ class Header extends Component {
                       {this.state.logged ? (
                         <ul className="onhover-show-div">
                           <li>{this.state.user}</li>
+                          <li>
+                            <Link to={"/my-order"} data-lng="en">
+                              My Order
+                            </Link>
+                          </li>
                           <li onClick={this._logout}>Logout</li>
                         </ul>
                       ) : (

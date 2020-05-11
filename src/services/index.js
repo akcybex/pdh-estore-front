@@ -43,26 +43,30 @@ export const getMinMaxPrice = (products) => {
     return { 'min': min, 'max': max };
 }
 
-export const getVisibleproducts = (data, { brand, color, value, sortBy }) => {
+export const getVisibleproducts = (data, { value, sortBy }, cateogry) => {
+    // console.log('VIS', cateogry, value)
     return data.products.filter(product => {
+        // console.log('PR', product);
 
-        let brandMatch;
-        if (product.tags)
-            brandMatch = product.tags.some(tag => brand.includes(tag))
-        else
-            brandMatch = true;
 
-        let colorMatch;
-        if (color && product.colors) {
-            colorMatch = product.colors.includes(color)
-        } else {
-            colorMatch = true;
-        }
+        // let brandMatch;
+        // if (product.tags)
+        //     brandMatch = product.tags.some(tag => brand.includes(tag))
+        // else
+        //     brandMatch = true;
+
+        // let colorMatch;
+        // if (color && product.colors) {
+        //     colorMatch = product.colors.includes(color)
+        // } else {
+        //     colorMatch = true;
+        // }
 
         const startPriceMatch = typeof value.min !== 'number' || value.min <= product.price;
         const endPriceMatch = typeof value.max !== 'number' || product.price <= value.max;
 
-        return brandMatch && colorMatch && startPriceMatch && endPriceMatch;
+        // return brandMatch && colorMatch && startPriceMatch && endPriceMatch;
+        return product.category_id == cateogry && startPriceMatch && endPriceMatch;
     }).sort((product1, product2) => {
         if (sortBy === 'HighToLow') {
             return product2.price < product1.price ? -1 : 1;
@@ -102,10 +106,10 @@ export const getTrendingCollection = (products, type) => {
     // console.log('TRAND', products,'T', type)
     const items = products.filter(product => {
         // return product.category === type;
-        console.log('*', product)
+        // console.log('*', product)
         return product;
     })
-    console.log('***', items)
+    // console.log('***', items)
     return items.slice(0, 8)
 }
 

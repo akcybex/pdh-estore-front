@@ -50,7 +50,7 @@ class cartComponent extends Component {
                         <tbody key={index}>
                           <tr>
                             <td>
-                              <Link to={"/left-sidebar/product/${item.id}"}>
+                              <Link to={`/left-sidebar/product/${item.id}`}>
                                 <img
                                   src={
                                     item.images
@@ -62,7 +62,7 @@ class cartComponent extends Component {
                               </Link>
                             </td>
                             <td>
-                              <Link to={"/left-sidebar/product/${item.id}"}>
+                              <Link to={`/left-sidebar/product/${item.id}`}>
                                 {item.name}
                               </Link>
                               <div className="mobile-cart-content row">

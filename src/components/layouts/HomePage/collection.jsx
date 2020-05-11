@@ -25,14 +25,14 @@ class Collection extends Component {
                                     <hr role="tournament6" />
                                 </div>
                                 <Slider {...Product4} className="product-4 product-m no-arrow">
-                                    {items.slice(0, 4).map((product, index) =>
+                                    {items.slice(0, 5).map((product, index) =>
                                         <div className="col-xl-3 col-md-6 col-grid-box">
                                             <ProductBox product={product} symbol={symbol}
                                                 onAddToWishlistClicked={() => addToWishlist(product)}
                                                 onAddToCartClicked={addToCart} key={index} />
                                         </div>)}
                                 </Slider>
-                                <br/>
+                                {/* <br/> */}
                                 {/* <Slider {...Product4} className="product-4 product-m no-arrow">
                                     {items.slice(0, 4).map((product, index) =>
                                         <div className="col-xl-3 col-md-6 col-grid-box">
