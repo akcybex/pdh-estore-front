@@ -19,8 +19,6 @@ class orderSuccess extends Component {
     let deliveryDate = next5days
       .toLocaleDateString("en-US", options)
       .toString();
-    // let img = items.images ? items.images.split(",") : [];
-    console.log("Item", items);
     return payment ? (
       <div>
         <section className="section-b-space light-layout">

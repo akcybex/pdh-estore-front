@@ -60,8 +60,6 @@ class LeftSideBar extends Component {
             dots: false,
             focusOnSelect: true
         };
-        // let img = item.images.split(',');
-        console.log('LEFT*', item)
         let img = item.images ? item.images.split(",") : [];
         return (
             <div>

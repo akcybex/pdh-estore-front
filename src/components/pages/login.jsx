@@ -33,12 +33,10 @@ class Login extends Component {
       API.post(`/login`, this.state)
         .then((res) => {
           toast.success("Logged Successfully");
-          // console.log("RES", res.data[0]);
           localStorage.setItem("logged", JSON.stringify(res.data[0]));
           window.location.replace("/");
         })
         .catch((err) => {
-          // console.log('ER',err)
           toast.error(err.message);
         });
     }

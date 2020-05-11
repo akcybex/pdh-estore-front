@@ -21,7 +21,6 @@ export const getAllProducts = () => dispatch => {
     //     return products;
     // })
     API.get('/products').then((res) => {
-        // console.log('RES', res.data)
         dispatch(receiveProducts(res.data));
     }).catch(err => console.log('ERR', err))
 }

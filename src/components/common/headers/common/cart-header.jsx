@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 const CartHeader = ({ item, total, symbol, removeFromCart }) => {
-  //   console.log("CAR", item);
   // let img = item.images.split(",");
   let img = item.images ? item.images.split(",") : [];
   return (

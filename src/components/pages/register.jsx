@@ -39,10 +39,8 @@ class Register extends Component {
         email: email,
         password: password,
       };
-      // console.log("State", data);
       API.post(`/register`, data)
-        .then((res) => {
-          console.log("RES", res);
+        .then((res) => {;
           if (res.status == 200) {
             API.post(`/login`, {
               email: email,
@@ -51,18 +49,15 @@ class Register extends Component {
             })
               .then((result) => {
                 toast.success("Logged Successfully");
-                // console.log("RES", result, "R", result.data);
                 localStorage.setItem("logged", JSON.stringify(result.data[0]));
                 window.location.replace("/");
               })
               .catch((err) => {
-                // console.log("ERR", err);
                 toast.error(err.message);
               });
           }
         })
         .catch((err) => {
-          // console.log("ERR", err);
           toast.error(err.message);
         });
     }

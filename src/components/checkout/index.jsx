@@ -126,7 +126,6 @@ class checkOut extends Component {
             },
           });
           this.props.emptyCart();
-          // console.log("RES", res);
         })
         .catch((err) => console.log("ERR", err));
     } else {
