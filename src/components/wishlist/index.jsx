@@ -126,7 +126,7 @@ class wishList extends Component {
                               </h2>
                             </td>
                             <td>
-                              <p>in stock</p>
+                                <p>{item.stock > 0? 'In stock':'Out of stock' }</p>
                             </td>
                             <td>
                               <a
