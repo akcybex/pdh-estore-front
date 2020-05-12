@@ -32,9 +32,13 @@ class Login extends Component {
     } else {
       API.post(`/login`, this.state)
         .then((res) => {
-          toast.success("Logged Successfully");
-          localStorage.setItem("logged", JSON.stringify(res.data[0]));
-          window.location.replace("/");
+          if ((res.data).length > 0) {
+            toast.success("Logged Successfully");
+            localStorage.setItem("logged", JSON.stringify(res.data[0]));
+            window.location.replace("/");
+          } else {
+            toast.error("Email or password wrong!");
+          }
         })
         .catch((err) => {
           toast.error(err.message);

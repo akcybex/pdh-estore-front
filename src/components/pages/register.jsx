@@ -40,7 +40,7 @@ class Register extends Component {
         password: password,
       };
       API.post(`/register`, data)
-        .then((res) => {;
+        .then((res) => {
           if (res.status == 200) {
             API.post(`/login`, {
               email: email,
@@ -48,9 +48,11 @@ class Register extends Component {
               is_admin: "0",
             })
               .then((result) => {
-                toast.success("Logged Successfully");
-                localStorage.setItem("logged", JSON.stringify(result.data[0]));
-                window.location.replace("/");
+                if ((result.data).length > 0) {
+                  toast.success("Logged Successfully");
+                  localStorage.setItem("logged", JSON.stringify(result.data[0]));
+                  window.location.replace("/");
+                }
               })
               .catch((err) => {
                 toast.error(err.message);
@@ -58,7 +60,7 @@ class Register extends Component {
           }
         })
         .catch((err) => {
-          toast.error(err.message);
+          if (err.response.status == 500) toast.error("Duplicate Email");
         });
     }
     event.preventDefault();

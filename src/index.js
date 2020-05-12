@@ -68,10 +68,11 @@ class Root extends React.Component {
 
                                     <Route path={"/pages/about-us"} component={aboutUs} />
                                     <Route path={"/pages/contact"} component={Contact} />
-                                    {/* Auth Private Routes */}
+                                    {/* Auth Private and Protected Routes */}
                                     <AuthRoute path={"/pages/login"} component={Login} />
                                     <AuthRoute path={"/pages/register"} component={Register} />
                                     <ProtectedRoute path={"/checkout"} component={checkOut} />
+                                    <ProtectedRoute path={"/wishlist"} component={wishList} />
                                     {/*Routes For custom Features*/}
                                     <Route path={"/cart"} component={Cart} />
                                     <Route path={"/wishlist"} component={wishList} />

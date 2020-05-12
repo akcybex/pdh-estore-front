@@ -10,8 +10,8 @@ class MyOrder extends Component {
     };
   }
   componentDidMount() {
-    let user = JSON.parse(localStorage.getItem("logged"));
-    API.get(`/orders?user_id=${user.id}`)
+    let user =  JSON.parse(localStorage.getItem("logged"));
+    API.get(`/orders?user_id=${user && user.id}`)
       .then((res) => this.setState({ order: res.data }))
       .catch((err) => console.log("ER", err));
   }
