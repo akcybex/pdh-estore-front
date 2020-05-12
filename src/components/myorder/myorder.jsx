@@ -19,7 +19,7 @@ class MyOrder extends Component {
     const { order } = this.state;
     return (
       <div>
-        <Breadcrumb title={"Wishlist"} />
+        <Breadcrumb title={"My Order"} />
         {order.length > 0 ? (
           <section className="wishlist-section section-b-space">
             <div className="container">

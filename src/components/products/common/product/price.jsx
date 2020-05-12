@@ -30,7 +30,7 @@ class Price extends Component {
     }
 
     plusQty = () => {
-        if(this.props.item.stock >= this.state.quantity) {
+        if(this.props.item.stock <= this.state.quantity) {
             this.setState({quantity: this.state.quantity+1})
         }else{
             this.setState({stock: 'Out of Stock !'})
