@@ -114,7 +114,7 @@ export const getCartTotal = cartItems => {
 
 // My Custom get user items function
 export const getUserItems = userItems => {
-    console.log('I**', userItems)
+    // console.log('I**', userItems)
     var user = JSON.parse(localStorage.getItem('logged'));
     let items;
     if (user) {

@@ -6,7 +6,7 @@ import SimpleReactValidator from "simple-react-validator";
 
 import Breadcrumb from "../common/breadcrumb";
 import { removeFromWishlist, emptyCart } from "../../actions";
-import { getCartTotal } from "../../services";
+import { getCartTotal, getUserItems } from "../../services";
 import API from "../../utils/api";
 class checkOut extends Component {
   constructor(props) {
@@ -553,7 +553,7 @@ class checkOut extends Component {
   }
 }
 const mapStateToProps = (state) => ({
-  cartItems: state.cartList.cart,
+  cartItems:getUserItems(state.cartList.cart),
   symbol: state.data.symbol,
   total: getCartTotal(state.cartList.cart),
 });
