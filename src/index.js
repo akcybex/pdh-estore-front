@@ -72,7 +72,6 @@ class Root extends React.Component {
                                     <AuthRoute path={"/pages/login"} component={Login} />
                                     <AuthRoute path={"/pages/register"} component={Register} />
                                     <ProtectedRoute path={"/checkout"} component={checkOut} />
-                                    <ProtectedRoute path={"/wishlist"} component={wishList} />
                                     {/*Routes For custom Features*/}
                                     <Route path={"/cart"} component={Cart} />
                                     <Route path={"/wishlist"} component={wishList} />

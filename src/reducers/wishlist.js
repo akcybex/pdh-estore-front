@@ -1,5 +1,6 @@
 import {
-    ADD_TO_WISHLIST,REMOVE_FROM_WISHLIST } from "../constants/ActionTypes";
+    ADD_TO_WISHLIST, REMOVE_FROM_WISHLIST
+} from "../constants/ActionTypes";
 
 
 export default function wishlistReducer(state = {
@@ -8,10 +9,10 @@ export default function wishlistReducer(state = {
     switch (action.type) {
         case ADD_TO_WISHLIST:
             const productId = action.product.id
-            if (state.list.findIndex(product => product.id === productId) !== -1) {
+            if (state.list.findIndex(product => product.id === productId && (product.user == action.user || product.user == 'guest')) !== -1) {
                 const list = state.list.reduce((cartAcc, product) => {
-                    if (product.id === productId) {
-                        cartAcc.push({ ...product }) 
+                    if (product.id === productId && (product.user == action.user || product.user == 'guest')) {
+                        cartAcc.push({ ...product })
                     } else {
                         cartAcc.push(product)
                     }
@@ -22,7 +23,7 @@ export default function wishlistReducer(state = {
                 return { ...state, list }
             }
 
-            return { ...state, list: [...state.list, action.product] }
+            return { ...state, list: [...state.list, { user: action.user, ...action.product }] }
 
         case REMOVE_FROM_WISHLIST:
             return {

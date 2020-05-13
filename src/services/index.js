@@ -83,16 +83,55 @@ export const getVisibleproducts = (data, { value, sortBy }, cateogry) => {
         }
     });
 }
+function getUnique(arr, comp) {
+    // store the comparison  values in array
+    const unique = arr.map(e => e[comp])
+        // store the indexes of the unique objects
+        .map((e, i, final) => final.indexOf(e) === i && i)
+        // eliminate the false indexes & return unique objects
+        .filter((e) => arr[e]).map(e => arr[e]);
 
+    return unique;
+}
+// Modify this function
 export const getCartTotal = cartItems => {
+    var user = JSON.parse(localStorage.getItem('logged'));
     var total = 0;
+    // let unique = getUnique(cartItems, 'id');
+    // console.log('U', unique)
     for (var i = 0; i < cartItems.length; i++) {
         // total += parseInt(cartItems[i].qty, 10) * parseInt((cartItems[i].price * cartItems[i].discount / 100), 10);
-        total += parseInt(cartItems[i].qty, 10) * parseInt((cartItems[i].price), 10);
+        if (user) {
+            if (cartItems[i].user == user.id || cartItems[i].user == 'guest')
+                total += parseInt(cartItems[i].qty, 10) * parseInt((cartItems[i].price), 10);
+        } else {
+            if (cartItems[i].user == 'guest')
+                total += parseInt(cartItems[i].qty, 10) * parseInt((cartItems[i].price), 10);
+        }
     }
     return total;
 }
 
+// My Custom get user items function
+export const getUserItems = userItems => {
+    console.log('I**', userItems)
+    var user = JSON.parse(localStorage.getItem('logged'));
+    let items;
+    if (user) {
+        items = userItems.filter(item => {
+            // if (item.user == 'guest') {
+            //     item.user = user.id
+            // }
+            return item.user == user.id || item.user == 'guest';
+        })
+        // return getUnique(items, 'id')
+    } else {
+        items = userItems.filter(item => {
+            return item.user == 'guest';
+        })
+    }
+    return items;
+}
 // Get Trending Tag wise Collection
 export const getTrendingTagCollection = (products, type, tag) => {
     const items = products.filter(product => {

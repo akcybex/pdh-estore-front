@@ -61,7 +61,7 @@ class ProductListing extends Component {
                       <ProductListItem
                         product={product}
                         symbol={symbol}
-                        onAddToWishlistClicked={() => addToWishlist(product)}
+                        onAddToWishlistClicked={addToWishlist}
                         onAddToCartClicked={addToCart}
                         key={index}
                       />

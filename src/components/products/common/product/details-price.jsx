@@ -12,10 +12,10 @@ class DetailsWithPrice extends Component {
             open:false,
             quantity:1,
             stock: 'InStock',
-            nav3: null
+            nav3: null,
+            user:'guest'
         }
     }
-
     onOpenModal = () => {
         this.setState({ open: true });
     };
@@ -25,6 +25,10 @@ class DetailsWithPrice extends Component {
     };
 
     componentDidMount() {
+        let user = JSON.parse(localStorage.getItem("logged"));
+        if (user) {
+          this.setState({ user: user.id });
+        }
         this.setState({
             nav3: this.slider3
         });
@@ -50,7 +54,7 @@ class DetailsWithPrice extends Component {
 
     render (){
         const {symbol, item, addToCartClicked, BuynowClicked, addToWishlistClicked} = this.props
-
+        const {user} = this.state;
         var colorsnav = {
             slidesToShow: 6,
             swipeToSlide:true,
@@ -132,7 +136,7 @@ class DetailsWithPrice extends Component {
                         </div>
                     </div>
                     <div className="product-buttons" >
-                        <a className="btn btn-solid" onClick={() => addToCartClicked(item, this.state.quantity)}>add to cart</a>
+                        <a className="btn btn-solid" onClick={() => addToCartClicked(item, this.state.quantity, user)}>add to cart</a>
                         <Link to={`${process.env.PUBLIC_URL}/checkout`} className="btn btn-solid" onClick={() => BuynowClicked(item, this.state.quantity)} >buy now</Link>
                     </div>
                     <div className="border-product">
@@ -148,7 +152,7 @@ class DetailsWithPrice extends Component {
                                 <li><a href="https://twitter.com/" target="_blank"><i className="fa fa-twitter"></i></a></li>
                                 <li><a href="https://www.instagram.com/" target="_blank"><i className="fa fa-instagram"></i></a></li>
                             </ul>
-                                <button className="wishlist-btn" onClick={() => addToWishlistClicked(item)}><i
+                                <button className="wishlist-btn" onClick={() => addToWishlistClicked(item, user)}><i
                                     className="fa fa-heart"></i><span
                                     className="title-font">Add To WishList</span>
                                 </button>

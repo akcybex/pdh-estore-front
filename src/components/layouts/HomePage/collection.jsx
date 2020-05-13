@@ -28,7 +28,7 @@ class Collection extends Component {
                                     {items.slice(0, 5).map((product, index) =>
                                         <div className="col-xl-3 col-md-6 col-grid-box">
                                             <ProductBox product={product} symbol={symbol}
-                                                onAddToWishlistClicked={() => addToWishlist(product)}
+                                                onAddToWishlistClicked={addToWishlist}
                                                 onAddToCartClicked={addToCart} key={index} />
                                         </div>)}
                                 </Slider>

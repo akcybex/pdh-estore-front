@@ -113,13 +113,7 @@ class Header extends Component {
                 <div className="col-lg-6 text-right">
                   <ul className="header-dropdown">
                     <li className="mobile-wishlist">
-                      <Link
-                        to={"/wishlist"}
-                        onClick={() =>
-                          !localStorage.getItem("logged") &&
-                          alert("Login Required!")
-                        }
-                      >
+                      <Link to={"/wishlist"}>
                         <i className="fa fa-heart" aria-hidden="true" />
                         Wishlist
                       </Link>

@@ -4,16 +4,25 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import Breadcrumb from "../common/breadcrumb";
-import { getCartTotal } from "../../services";
+import { getCartTotal, getUserItems } from "../../services";
 import { removeFromCart, incrementQty, decrementQty } from "../../actions";
 
 class cartComponent extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      user: "guest",
+    };
   }
-
+  componentDidMount() {
+    let user = JSON.parse(localStorage.getItem("logged"));
+    if (user) {
+      this.setState({ user: user.id });
+    }
+  }
   render() {
     const { cartItems, symbol, total } = this.props;
+    const { user } = this.state;
     return (
       <div>
         {/*SEO Support*/}
@@ -87,15 +96,12 @@ class cartComponent extends Component {
                                 </div>
                                 <div className="col-xs-3">
                                   <h2 className="td-color">
-                                    <a
-                                      href="#"
-                                      className="icon"
+                                    <i
+                                      className="icon-close"
                                       onClick={() =>
-                                        this.props.removeFromCart(item)
+                                        this.props.removeFromCart(item, user)
                                       }
-                                    >
-                                      <i className="icon-close" />
-                                    </a>
+                                    />
                                   </h2>
                                 </div>
                               </div>
@@ -116,7 +122,7 @@ class cartComponent extends Component {
                                       type="button"
                                       className="btn quantity-left-minus"
                                       onClick={() =>
-                                        this.props.decrementQty(item.id)
+                                        this.props.decrementQty(item.id, user)
                                       }
                                       data-type="minus"
                                       data-field=""
@@ -136,7 +142,7 @@ class cartComponent extends Component {
                                     <button
                                       className="btn quantity-right-plus"
                                       onClick={() =>
-                                        this.props.incrementQty(item, 1)
+                                        this.props.incrementQty(item, 1, user)
                                       }
                                       data-type="plus"
                                       disabled={
@@ -151,13 +157,12 @@ class cartComponent extends Component {
                               {item.qty >= item.stock ? "out of Stock" : ""}
                             </td>
                             <td>
-                              <a
-                                href="#"
-                                className="icon"
-                                onClick={() => this.props.removeFromCart(item)}
-                              >
-                                <i className="fa fa-times" />
-                              </a>
+                              <i
+                                className="icon-close"
+                                onClick={() =>
+                                  this.props.removeFromCart(item, user)
+                                }
+                              />
                             </td>
                             <td>
                               <h2 className="td-color">
@@ -236,7 +241,7 @@ class cartComponent extends Component {
   }
 }
 const mapStateToProps = (state) => ({
-  cartItems: state.cartList.cart,
+  cartItems: getUserItems(state.cartList.cart),
   symbol: state.data.symbol,
   total: getCartTotal(state.cartList.cart),
 });

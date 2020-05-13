@@ -33,9 +33,9 @@ export const fetchSingleProduct = productId => ({
 
 
 //it seems that I should probably use this as the basis for "Cart"
-export const addToCart = (product, qty) => (dispatch) => {
+export const addToCart = (product, qty, user) => (dispatch) => {
     toast.success("Item Added to Cart");
-    dispatch(addToCartUnsafe(product, qty))
+    dispatch(addToCartUnsafe(product, qty, user))
 
 }
 export const addToCartAndRemoveWishlist = (product, qty) => (dispatch) => {
@@ -43,29 +43,32 @@ export const addToCartAndRemoveWishlist = (product, qty) => (dispatch) => {
     dispatch(addToCartUnsafe(product, qty));
     dispatch(removeFromWishlist(product));
 }
-export const addToCartUnsafe = (product, qty) => ({
+export const addToCartUnsafe = (product, qty, user) => ({
     type: types.ADD_TO_CART,
     product,
-    qty
+    qty,
+    user
 });
-export const removeFromCart = product_id => (dispatch) => {
+export const removeFromCart = (product, user) => (dispatch) => {
     toast.error("Item Removed from Cart");
     dispatch({
         type: types.REMOVE_FROM_CART,
-        product_id
+        product,
+        user
     })
 };
-export const incrementQty = (product, qty) => (dispatch) => {
+export const incrementQty = (product, qty, user) => (dispatch) => {
     toast.success("Item Added to Cart");
-    dispatch(addToCartUnsafe(product, qty))
+    dispatch(addToCartUnsafe(product, qty, user))
 
 }
-export const decrementQty = productId => (dispatch) => {
+export const decrementQty = (productId, user) => (dispatch) => {
     toast.warn("Item Decrement Qty to Cart");
 
     dispatch({
         type: types.DECREMENT_QTY,
-        productId
+        productId,
+        user
     })
 };
 
@@ -77,14 +80,17 @@ export const emptyCart = () => (dispatch) => {
 };
 
 //it seems that I should probably use this as the basis for "Wishlist"
-export const addToWishlist = (product) => (dispatch) => {
+// Modify function
+export const addToWishlist = (product, user) => (dispatch) => {
     toast.success("Item Added to Wishlist");
-    dispatch(addToWishlistUnsafe(product))
+    dispatch(addToWishlistUnsafe(product, user))
 
 }
-export const addToWishlistUnsafe = (product) => ({
+// Modify function
+export const addToWishlistUnsafe = (product, user) => ({
     type: types.ADD_TO_WISHLIST,
-    product
+    product,
+    user
 });
 export const removeFromWishlist = product_id => (dispatch) => {
     toast.error("Item Removed from Wishlist");

@@ -7,7 +7,14 @@ class ProductBox extends Component {
 
     this.state = {
       image: "",
+      user: "guest",
     };
+  }
+  componentDidMount() {
+    let user = JSON.parse(localStorage.getItem("logged"));
+    if (user) {
+      this.setState({ user: user.id });
+    }
   }
 
   onClickHandle(img) {
@@ -21,6 +28,7 @@ class ProductBox extends Component {
       onAddToCartClicked,
       onAddToWishlistClicked,
     } = this.props;
+    const { user } = this.state;
     let RatingStars = [];
     for (var i = 0; i < product.rating; i++) {
       RatingStars.push(<i className="fa fa-star" key={i} />);
@@ -59,14 +67,14 @@ class ProductBox extends Component {
           <div className="cart-info cart-wrap">
             <button
               title="Add to cart"
-              onClick={() => onAddToCartClicked(product, 1)}
+              onClick={() => onAddToCartClicked(product, 1, user)}
             >
               <i className="fa fa-shopping-cart" aria-hidden="true" />
             </button>
             <a
               href="javascript:void(0)"
               title="Add to Wishlist"
-              onClick={onAddToWishlistClicked}
+              onClick={() => onAddToWishlistClicked(product, user)}
             >
               <i className="fa fa-heart" aria-hidden="true" />
             </a>

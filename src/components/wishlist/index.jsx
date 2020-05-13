@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import Breadcrumb from "../common/breadcrumb";
+import { getUserItems } from "../../services/index";
 import { addToCartAndRemoveWishlist, removeFromWishlist } from "../../actions";
 
 class wishList extends Component {
@@ -12,7 +13,7 @@ class wishList extends Component {
 
   render() {
     const { Items, symbol } = this.props;
-    
+    console.log("ITEM", Items);
     return (
       <div>
         <Breadcrumb title={"Wishlist"} />
@@ -32,7 +33,7 @@ class wishList extends Component {
                       </tr>
                     </thead>
                     {Items.map((item, index) => {
-                        let img = item.images ? item.images.split(",") : [];
+                      let img = item.images ? item.images.split(",") : [];
                       return (
                         <tbody key={index}>
                           <tr>
@@ -54,7 +55,7 @@ class wishList extends Component {
                                   src={
                                     item.images
                                       ? img[0]
-                                      : '../../assets/images/portfolio/1.jpg'
+                                      : "../../assets/images/portfolio/1.jpg"
                                   }
                                   alt=""
                                 />
@@ -114,7 +115,8 @@ class wishList extends Component {
                             </td>
                             <td>
                               <h2>
-                                {symbol}{item.price}
+                                {symbol}
+                                {item.price}
                                 {/* {item.price -
                                   (item.price * item.discount) / 100} */}
                                 <del>
@@ -126,7 +128,9 @@ class wishList extends Component {
                               </h2>
                             </td>
                             <td>
-                                <p>{item.stock > 0? 'In stock':'Out of stock' }</p>
+                              <p>
+                                {item.stock > 0 ? "In stock" : "Out of stock"}
+                              </p>
                             </td>
                             <td>
                               <a
@@ -204,7 +208,7 @@ class wishList extends Component {
   }
 }
 const mapStateToProps = (state) => ({
-  Items: state.wishlist.list,
+  Items: getUserItems(state.wishlist.list),
   symbol: state.data.symbol,
 });
 

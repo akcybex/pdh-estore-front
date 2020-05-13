@@ -11,9 +11,15 @@ class ProductListItem extends Component {
       stock: "InStock",
       quantity: 1,
       image: "",
+      user: "guest",
     };
   }
-
+  componentDidMount() {
+    let user = JSON.parse(localStorage.getItem("logged"));
+    if (user) {
+      this.setState({ user: user.id });
+    }
+  }
   onOpenModal = () => {
     this.setState({ open: true });
   };
@@ -51,7 +57,7 @@ class ProductListItem extends Component {
       onAddToCartClicked,
       onAddToWishlistClicked,
     } = this.props;
-    const { open } = this.state;
+    const { open ,user } = this.state;
 
     let RatingStars = [];
     for (var i = 0; i < product.rating; i++) {
@@ -85,14 +91,14 @@ class ProductListItem extends Component {
           <div className="cart-info cart-wrap">
             <button
               title="Add to cart"
-              onClick={() => onAddToCartClicked(product, 1)}
+              onClick={() => onAddToCartClicked(product, 1, user)}
             >
               <i className="fa fa-shopping-cart" aria-hidden="true" />
             </button>
             <a
               href="javascript:void(0)"
               title="Add to Wishlist"
-              onClick={onAddToWishlistClicked}
+              onClick={()=> onAddToWishlistClicked(product,user)}
             >
               <i className="fa fa-heart" aria-hidden="true" />
             </a>
@@ -286,7 +292,7 @@ class ProductListItem extends Component {
                         <button
                           className="btn btn-solid"
                           onClick={() =>
-                            onAddToCartClicked(product, this.state.quantity)
+                            onAddToCartClicked(product, this.state.quantity, user)
                           }
                         >
                           add to cart
