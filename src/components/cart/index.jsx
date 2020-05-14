@@ -121,7 +121,7 @@ class cartComponent extends Component {
                                     <button
                                       type="button"
                                       className="btn quantity-left-minus"
-                                      onClick={() =>
+                                      onClick={() => item.qty > 1 &&
                                         this.props.decrementQty(item.id, user)
                                       }
                                       data-type="minus"
@@ -192,7 +192,7 @@ class cartComponent extends Component {
               <div className="row cart-buttons">
                 <div className="col-6">
                   <Link
-                    to={"/left-sidebar/collection"}
+                    to={"/"}
                     className="btn btn-solid"
                   >
                     continue shopping

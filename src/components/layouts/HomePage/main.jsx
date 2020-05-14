@@ -56,7 +56,7 @@ class Home extends Component {
                           <h4>Welcome To ProHub</h4>
                           <h2>Professional designer</h2>
                           <Link
-                            to={"/left-sidebar/collection"}
+                            to={"/"}
                             className="btn btn-solid"
                           >
                             shop now
@@ -85,7 +85,7 @@ class Home extends Component {
                           <Link
                             to={`${
                               process.env.PUBLIC_URL
-                            }/left-sidebar/collection`}
+                            }/`}
                             className="btn btn-solid"
                           >
                             shop now
