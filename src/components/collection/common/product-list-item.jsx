@@ -298,7 +298,7 @@ class ProductListItem extends Component {
                           add to cart
                         </button>
                         <Link
-                          to={"/left-sidebar/product/${product.id}"}
+                          to={`/left-sidebar/product/${product.id}`}
                           className="btn btn-solid"
                         >
                           view detail
