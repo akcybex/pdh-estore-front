@@ -78,14 +78,16 @@ class ProductBox extends Component {
             >
               <i className="fa fa-heart" aria-hidden="true" />
             </a>
-            <a
-              href="javascript:void(0)"
+            <Link
+              to={`${process.env.PUBLIC_URL}/left-sidebar/product/${
+                product.id
+              }`}
               data-toggle="modal"
               data-target="#quick-view"
               title="Preview"
             >
               <i className="fa fa-eye" aria-hidden="true" />
-            </a>
+            </Link>
           </div>
         </div>
         <div className="product-detail">
