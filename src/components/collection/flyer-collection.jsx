@@ -82,7 +82,7 @@ class Flyers extends Component {
                                                                 </div>
                                                                 <div className="row">
                                                                     <div className="col-12">
-                                                                        <FilterBar onLayoutViewClicked={(colmuns) => this.LayoutViewClicked(colmuns)}/>
+                                                                        <FilterBar onLayoutViewClicked={(colmuns) => this.LayoutViewClicked(colmuns)} category= {this.props.match.params.category}/>
                                                                     </div>
                                                                 </div>
                                                             </div>
