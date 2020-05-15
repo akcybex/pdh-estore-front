@@ -44,7 +44,7 @@ export const getMinMaxPrice = (products) => {
 }
 
 export const getVisibleproducts = (data, { value, sortBy }, cateogry) => {
-    // console.log('VIS', cateogry, value)
+    console.log('VIS', cateogry, value)
     return data.products.filter(product => {
         // console.log('PR', product);
 

@@ -53,7 +53,6 @@ class FilterBar extends Component {
   };
 
   render() {
-    console.log("FIL", this.props.products);
     return (
       <div className="product-filter-content">
         <div className="search-count">

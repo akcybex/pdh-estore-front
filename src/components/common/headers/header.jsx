@@ -18,6 +18,7 @@ class Header extends Component {
       isLoading: false,
       logged: false,
       user: "",
+      searchValue: "",
     };
   }
   /*=====================
@@ -88,6 +89,20 @@ class Header extends Component {
     localStorage.removeItem("logged");
     window.location.reload();
     this.setState({ logged: false });
+  };
+  handleSearch = (event) => {
+    const regex = /[1-5]$/g;
+    let url = window.location.href;
+    let category_id = url.match(regex);
+    const { searchValue } = this.state;
+    if (searchValue.length == 0) {
+      alert("Type Product Name!");
+    } else {
+      category_id
+        ? (window.location = `/search-result/${searchValue}/${category_id.toString()}`)
+        : (window.location = `/search-result/${searchValue}`);
+    }
+    event.preventDefault();
   };
   render() {
     return (
@@ -288,13 +303,17 @@ class Header extends Component {
               <div className="container">
                 <div className="row">
                   <div className="col-xl-12">
-                    <form>
+                    <form onSubmit={this.handleSearch}>
                       <div className="form-group">
                         <input
                           type="text"
+                          value={this.state.searchValue}
                           className="form-control"
                           id="exampleInputPassword1"
                           placeholder="Search a Product"
+                          onChange={(e) =>
+                            this.setState({ searchValue: e.target.value })
+                          }
                         />
                       </div>
                       <button type="submit" className="btn btn-primary">

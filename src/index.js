@@ -39,8 +39,9 @@ import Cart from './components/cart'
 import wishList from './components/wishlist'
 import checkOut from './components/checkout'
 import orderSuccess from './components/checkout/success-page'
+//New Added
 import MyOrder from './components/myorder/myorder'
-
+import SearchResult from './components/pages/search-result'
 
 class Root extends React.Component {
 
@@ -68,7 +69,7 @@ class Root extends React.Component {
 
                                     <Route path={"/pages/about-us"} component={aboutUs} />
                                     <Route path={"/pages/contact"} component={Contact} />
-                                    {/* Auth Private and Protected Routes */}
+                                    {/*New Auth Private and Protected Routes */}
                                     <AuthRoute path={"/pages/login"} component={Login} />
                                     <AuthRoute path={"/pages/register"} component={Register} />
                                     <ProtectedRoute path={"/checkout"} component={checkOut} />
@@ -77,8 +78,10 @@ class Root extends React.Component {
                                     <Route path={"/wishlist"} component={wishList} />
                                     {/* <Route path={"/checkout"} component={checkOut} /> */}
                                     <Route path={"/order-success"} component={orderSuccess} />
-                                    <Route path={"/my-order"} component={MyOrder} />
                                     <Route path={"/sales/orders"} component={aboutUs} />
+                                    {/* New Added */}
+                                    <Route path={"/my-order"} component={MyOrder} />
+                                    <Route path={"/search-result/:name/:category_id?"} component={SearchResult} />
                                 </Layout>
                             </Switch>
                         </ScrollContext>
