@@ -60,8 +60,8 @@ class Contact extends Component {
           }
         })
         .catch((err) => {
-          console.log("RES", err.response);
-          //   toast.error(err.message);
+          // console.log("RES", err.response);
+            toast.error(err.message);
         });
     }
     event.preventDefault();
