@@ -114,7 +114,7 @@ export const getCartTotal = cartItems => {
 
 // My Custom get user items function
 export const getUserItems = userItems => {
-    console.log('I**', userItems)
+    // console.log('I**', userItems)
     var user = JSON.parse(localStorage.getItem('logged'));
     let items;
     if (user) {
@@ -130,7 +130,7 @@ export const getUserItems = userItems => {
             return item.user == 'guest';
         })
     }
-    console.log('I', items)
+    // console.log('I', items)
     return items;
 }
 // Get Trending Tag wise Collection

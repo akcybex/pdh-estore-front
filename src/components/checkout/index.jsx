@@ -24,7 +24,11 @@ class checkOut extends Component {
       state: "",
       proceed: false,
       pincode: "",
+      total: props.total,
       create_account: "",
+      coupon: "",
+      disable: false,
+      cdiscount: "",
     };
     this.validator = new SimpleReactValidator();
   }
@@ -82,6 +86,28 @@ class checkOut extends Component {
   //       this.forceUpdate();
   //     }
   //   };
+  applyCoupon = () => {
+    const { coupon } = this.state;
+    const { total } = this.props;
+    if (coupon.length == 0) {
+      alert("Coupon required");
+    } else {
+      API.post("/coupons/validate", { ccode: coupon })
+        .then((res) => {
+          // console.log("RES", res);
+          if (res.data.length == 0) {
+            alert("Invalid coupon");
+          } else {
+            let co = res.data[0];
+            let discount = (co.discount * total) / 100;
+            let t = total - discount;
+            // console.log("D", discount, "T", t);
+            this.setState({ total: t, disable: true, cdiscount: discount });
+          }
+        })
+        .catch((err) => alert(err.message));
+    }
+  };
   proceedOrder = () => {
     const {
       first_name,
@@ -93,6 +119,9 @@ class checkOut extends Component {
       address,
       state,
       pincode,
+      total,
+      cdiscount,
+      coupon,
     } = this.state;
     if (this.validator.allValid()) {
       let user = JSON.parse(localStorage.getItem("logged"));
@@ -112,7 +141,7 @@ class checkOut extends Component {
         user_id: user.id,
         billing_address: JSON.stringify(billing),
         order_items: JSON.stringify(this.props.cartItems),
-        amount: this.props.total,
+        amount: total,
       };
       API.post("/orders/place", obj)
         .then((res) => {
@@ -121,13 +150,15 @@ class checkOut extends Component {
             state: {
               payment: billing,
               items: this.props.cartItems,
-              orderTotal: this.props.total,
+              orderTotal: total,
               symbol: this.props.symbol,
+              coupon: coupon,
+              discount: cdiscount,
             },
           });
           this.props.emptyCart();
         })
-        .catch((err) => console.log("ERR", err));
+        .catch((err) => alert(err.message));
     } else {
       this.validator.showMessages();
       this.setState({ proceed: false });
@@ -137,7 +168,8 @@ class checkOut extends Component {
   };
 
   render() {
-    const { cartItems, symbol, total } = this.props;
+    const { cartItems, symbol } = this.props;
+    const { total } = this.state;
 
     // Paypal Integration
     const onSuccess = (payment) => {
@@ -406,6 +438,32 @@ class checkOut extends Component {
                               </div>
                             </li>
                           </ul>
+                          {/* Coupons form  */}
+                          <ul style={{ marginBottom: 10 }}>
+                            <li>
+                              <input
+                                type="text"
+                                placeholder="Coupons"
+                                disabled={this.state.disable}
+                                value={this.state.coupon}
+                                onChange={(e) =>
+                                  this.setState({ coupon: e.target.value })
+                                }
+                              />
+                            </li>
+                            <li>
+                              <button
+                                style={{ marginLeft: 20 }}
+                                type="button"
+                                className="btn-solid btn"
+                                onClick={() =>
+                                  !this.state.disable && this.applyCoupon()
+                                }
+                              >
+                                Apply Coupon
+                              </button>
+                            </li>
+                          </ul>
 
                           <ul className="total">
                             <li>
@@ -553,7 +611,7 @@ class checkOut extends Component {
   }
 }
 const mapStateToProps = (state) => ({
-  cartItems:getUserItems(state.cartList.cart),
+  cartItems: getUserItems(state.cartList.cart),
   symbol: state.data.symbol,
   total: getCartTotal(state.cartList.cart),
 });

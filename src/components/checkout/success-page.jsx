@@ -6,7 +6,14 @@ class orderSuccess extends Component {
   }
 
   render() {
-    const { payment, items, symbol, orderTotal } = this.props.location.state;
+    const {
+      payment,
+      items,
+      symbol,
+      orderTotal,
+      coupon,
+      discount,
+    } = this.props.location.state;
     var options = {
       weekday: "long",
       year: "numeric",
@@ -51,11 +58,7 @@ class orderSuccess extends Component {
                       <div className="row product-order-detail" key={index}>
                         <div className="col-3">
                           <img
-                            src={
-                              item.images
-                                ? img[0]
-                                : img[0]
-                            }
+                            src={item.images ? img[0] : img[0]}
                             alt=""
                             className="img-fluid"
                           />
@@ -85,6 +88,16 @@ class orderSuccess extends Component {
                     );
                   })}
                   <div className="total-sec">
+                    {discount !== "" && (
+                      <ul>
+                        <li>
+                          Coupon code <span>{coupon}</span>
+                        </li>
+                        <li>
+                          Coupon discount <span>${discount}</span>
+                        </li>
+                      </ul>
+                    )}
                     <ul>
                       <li>
                         subtotal{" "}
