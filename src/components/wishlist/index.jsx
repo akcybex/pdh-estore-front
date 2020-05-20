@@ -13,7 +13,6 @@ class wishList extends Component {
 
   render() {
     const { Items, symbol } = this.props;
-    console.log("ITEM", Items);
     return (
       <div>
         <Breadcrumb title={"Wishlist"} />

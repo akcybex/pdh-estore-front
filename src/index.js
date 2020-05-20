@@ -41,6 +41,7 @@ import checkOut from './components/checkout'
 import orderSuccess from './components/checkout/success-page'
 //New Added
 import MyOrder from './components/myorder/myorder'
+import MyReview from './components/myreview/myreview'
 import SearchResult from './components/pages/search-result'
 
 class Root extends React.Component {
@@ -81,6 +82,7 @@ class Root extends React.Component {
                                     <Route path={"/sales/orders"} component={aboutUs} />
                                     {/* New Added */}
                                     <Route path={"/my-order"} component={MyOrder} />
+                                    <Route path={"/my-review"} component={MyReview} />
                                     <Route path={"/search-result/:name/:category_id?"} component={SearchResult} />
                                 </Layout>
                             </Switch>

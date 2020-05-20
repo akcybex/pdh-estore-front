@@ -3,25 +3,28 @@ import { Link } from "react-router-dom";
 import Breadcrumb from "../common/breadcrumb";
 import API from "../../utils/api";
 import { connect } from "react-redux";
-class MyOrder extends Component {
+import ProductItem from "./product-item";
+class MyReview extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      order: [],
+      reviews: [],
     };
   }
   componentDidMount() {
     let user = JSON.parse(localStorage.getItem("logged"));
-    API.get(`/orders?user_id=${user && user.id}`)
-      .then((res) => this.setState({ order: res.data }))
+    API.get(`reviews/${user && user.id}/user`)
+      .then((res) => {
+        this.setState({ reviews: res.data });
+      })
       .catch((err) => console.log("ER", err));
   }
   render() {
-    const { order } = this.state;
+    const { reviews } = this.state;
     return (
       <div>
-        <Breadcrumb title={"My Order"} />
-        {order.length > 0 ? (
+        <Breadcrumb title={"My Review"} />
+        {reviews.length > 0 ? (
           <section className="wishlist-section section-b-space">
             <div className="container">
               <div className="row">
@@ -29,30 +32,28 @@ class MyOrder extends Component {
                   <table className="table cart-table table-responsive-xs">
                     <thead>
                       <tr className="table-head">
-                        <th scope="col">Order#</th>
-                        <th scope="col">Order Items</th>
-                        <th scope="col">Amount</th>
-                        <th scope="col">Address</th>
-                        <th scope="col">Status</th>
+                        <th scope="col">Product</th>
+                        <th scope="col">User Detail</th>
+                        <th scope="col">Rating</th>
+                        <th scope="col">Rewiew</th>
                       </tr>
                     </thead>
-                    {order.map((item, index) => {
-                      let address = JSON.parse(item.billing_address);
+                    {reviews.map((item, index) => {
                       return (
                         <tbody key={index}>
                           <tr>
-                            <td>{index + 1}</td>
-                            <td>{JSON.parse(item.order_items).length}</td>
                             <td>
-                              <h2>
-                                {this.props.symbol}
-                                {item.amount}
-                              </h2>
+                              {" "}
+                              <ProductItem id={item.product_id} />
                             </td>
                             <td>
-                              <p>{`${address.address}, ${address.city}`}</p>
+                              <p>{item.name}</p>
+                              <p>{item.email}</p>
                             </td>
-                            <td>{item.status}</td>
+                            <td>{item.rating}/5</td>
+                            <td>
+                              <p>{item.testimonial}</p>
+                            </td>
                           </tr>
                         </tbody>
                       );
@@ -80,15 +81,15 @@ class MyOrder extends Component {
                 <div className="col-sm-12">
                   <div>
                     <div className="col-sm-12 empty-cart-cls text-center">
-                      <img
+                      {/* <img
                         src={`${
                           process.env.PUBLIC_URL
                         }/assets/images/empty-wishlist.png`}
                         className="img-fluid mb-4"
                         alt=""
-                      />
+                      /> */}
                       <h3>
-                        <strong>My Order is Empty</strong>
+                        <strong>My Review is Empty</strong>
                       </h3>
                       <h4>Explore more shortlist some items.</h4>
                     </div>
@@ -108,4 +109,4 @@ const mapStateToProps = (state) => ({
 export default connect(
   mapStateToProps,
   {}
-)(MyOrder);
+)(MyReview);

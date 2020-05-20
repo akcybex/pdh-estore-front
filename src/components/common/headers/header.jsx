@@ -143,6 +143,11 @@ class Header extends Component {
                               My Order
                             </Link>
                           </li>
+                          <li>
+                            <Link to={"/my-review"} data-lng="en">
+                              My Review
+                            </Link>
+                          </li>
                           <li onClick={this._logout}>Logout</li>
                         </ul>
                       ) : (
