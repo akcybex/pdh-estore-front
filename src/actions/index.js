@@ -38,9 +38,9 @@ export const addToCart = (product, qty, user) => (dispatch) => {
     dispatch(addToCartUnsafe(product, qty, user))
 
 }
-export const addToCartAndRemoveWishlist = (product, qty) => (dispatch) => {
+export const addToCartAndRemoveWishlist = (product, qty, user) => (dispatch) => {
     toast.success("Item Added to Cart");
-    dispatch(addToCartUnsafe(product, qty));
+    dispatch(addToCartUnsafe(product, qty, user));
     dispatch(removeFromWishlist(product));
 }
 export const addToCartUnsafe = (product, qty, user) => ({

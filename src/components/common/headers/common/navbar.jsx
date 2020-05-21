@@ -70,7 +70,7 @@ class NavBar extends Component {
               </li>
               <li>
                 <Link
-                  to="#"
+                  to="/messages"
                   className="nav-link"
                   onClick={(e) => this.handleSubmenu(e)}
                 >

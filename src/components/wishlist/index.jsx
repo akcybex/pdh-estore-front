@@ -10,9 +10,22 @@ class wishList extends Component {
   changeQty = (e) => {
     this.setState({ quantity: parseInt(e.target.value) });
   };
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: "guest",
+    };
+  }
+  componentDidMount() {
+    let user = JSON.parse(localStorage.getItem("logged"));
+    if (user) {
+      this.setState({ user: user.id });
+    }
+  }
 
   render() {
     const { Items, symbol } = this.props;
+    const { user } = this.state;
     return (
       <div>
         <Breadcrumb title={"Wishlist"} />
@@ -68,15 +81,13 @@ class wishList extends Component {
                               >
                                 {item.name}
                               </Link>
-                              <div className="mobile-cart-content row">
+                              {/* <div className="mobile-cart-content row">
                                 <div className="col-xs-3">
                                   <p>in stock</p>
                                 </div>
                                 <div className="col-xs-3">
                                   <h2 className="td-color">
                                     {symbol} {item.price}
-                                    {/* {item.price -
-                                      (item.price * item.discount) / 100} */}
                                     <del>
                                       <span className="money">
                                         {symbol}
@@ -96,6 +107,7 @@ class wishList extends Component {
                                     >
                                       <i className="fa fa-times" />
                                     </a>
+
                                     <a
                                       href="javascript:void(0)"
                                       className="cart"
@@ -110,7 +122,7 @@ class wishList extends Component {
                                     </a>
                                   </h2>
                                 </div>
-                              </div>
+                              </div> */}
                             </td>
                             <td>
                               <h2>
@@ -141,11 +153,16 @@ class wishList extends Component {
                               >
                                 <i className="fa fa-times" />
                               </a>
+                              &nbsp;&nbsp;&nbsp;
                               <a
                                 href="javascript:void(0)"
                                 className="cart"
                                 onClick={() =>
-                                  this.props.addToCartAndRemoveWishlist(item, 1)
+                                  this.props.addToCartAndRemoveWishlist(
+                                    item,
+                                    1,
+                                    user
+                                  )
                                 }
                               >
                                 <i className="fa fa-shopping-cart" />

@@ -43,6 +43,7 @@ import orderSuccess from './components/checkout/success-page'
 import MyOrder from './components/myorder/myorder'
 import MyReview from './components/myreview/myreview'
 import SearchResult from './components/pages/search-result'
+import Messages from './components/chat'
 
 class Root extends React.Component {
 
@@ -84,6 +85,7 @@ class Root extends React.Component {
                                     <Route path={"/my-order"} component={MyOrder} />
                                     <Route path={"/my-review"} component={MyReview} />
                                     <Route path={"/search-result/:name/:category_id?"} component={SearchResult} />
+                                    <Route path={"/messages"} component={Messages} />
                                 </Layout>
                             </Switch>
                         </ScrollContext>
