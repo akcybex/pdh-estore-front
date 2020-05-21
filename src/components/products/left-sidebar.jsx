@@ -45,7 +45,8 @@ class LeftSideBar extends Component {
     }
 
     render(){
-        const {symbol, item, addToCart, addToCartUnsafe, addToWishlist} = this.props
+        const {symbol, item, addToCart, addToCartUnsafe, addToWishlist} = this.props;
+        let review = this.props.match.params.review;
         var products = {
             slidesToShow: 1,
             slidesToScroll: 1,
@@ -122,7 +123,7 @@ class LeftSideBar extends Component {
                                             <DetailsWithPrice symbol={symbol} item={item} navOne={this.state.nav1} addToCartClicked={addToCart} BuynowClicked={addToCartUnsafe} addToWishlistClicked={addToWishlist} />
                                         </div>
                                     </div>
-                                    <DetailsTopTabs item={item} />
+                                    <DetailsTopTabs item={item} review={review}/>
                                 </div>
                             </div>
                         </div>

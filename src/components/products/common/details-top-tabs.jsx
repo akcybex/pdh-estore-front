@@ -12,17 +12,15 @@ class DetailsTopTabs extends Component {
     super(props);
     this.state = {
       rating: 1,
-      name: "",
-      email: "",
-      title: "",
       testimonial: "",
     };
   }
   handleChange = (evt) => {
     const value = evt.target.value;
-    this.setState({
-      [evt.target.name]: value,
-    });
+    if (value.length < 36)
+      this.setState({
+        [evt.target.name]: value,
+      });
   };
   changeRating = (newRating, name) => {
     this.setState({
@@ -31,18 +29,10 @@ class DetailsTopTabs extends Component {
   };
   sendReview = (item) => {
     let user = JSON.parse(localStorage.getItem("logged"));
-    const { name, email, title, testimonial } = this.state;
+    const { testimonial } = this.state;
     if (user) {
-      if (name.length == 0) {
-        toast.error("Name is required!");
-      } else if (email.length == 0) {
-        toast.error("Email is required!");
-      } else if (title.length == 0) {
-        toast.error("Title is required!");
-      } else if (testimonial.length == 0) {
+      if (testimonial.length == 0) {
         toast.error("Review Detail required!");
-      } else if (!validateEmail(email)) {
-        toast.error("Invalid Email");
       } else {
         let data = {
           ...this.state,
@@ -64,6 +54,7 @@ class DetailsTopTabs extends Component {
             }
           })
           .catch((err) => {
+            console.log("ERR", err.response);
             toast.error(err.message);
           });
       }
@@ -72,7 +63,7 @@ class DetailsTopTabs extends Component {
     }
   };
   render() {
-    const { item } = this.props;
+    const { item, review } = this.props;
     return (
       <section className="tab-product m-0">
         <div className="row">
@@ -93,13 +84,13 @@ class DetailsTopTabs extends Component {
                   </span>
                   <div className="material-border" />
                 </Tab>
-                <Tab className="nav-item">
+                {/* <Tab className="nav-item">
                   <span className="nav-link">
                     <i className="icofont icofont-contacts" />
                     Video
                   </span>
                   <div className="material-border" />
-                </Tab>
+                </Tab> */}
                 <Tab className="nav-item">
                   <span className="nav-link">
                     <i className="icofont icofont-contacts" />
@@ -156,7 +147,7 @@ class DetailsTopTabs extends Component {
                   like Aldus PageMaker including versions of Lorem Ipsum.
                 </p>
               </TabPanel>
-              <TabPanel>
+              {/* <TabPanel>
                 <div className="mt-4 text-center">
                   <div className="embed-responsive embed-responsive-16by9">
                     <iframe
@@ -166,95 +157,82 @@ class DetailsTopTabs extends Component {
                     />
                   </div>
                 </div>
-              </TabPanel>
+              </TabPanel> */}
+
               <TabPanel>
-                <form className="theme-form mt-4">
-                  <div className="form-row">
-                    <div className="col-md-12 ">
-                      <div className="media m-0">
-                        <label>Rating</label>
-                        <div className="media-body ml-3">
-                          {/* <div className="rating three-star">
+                {review !== undefined ? (
+                  <form className="theme-form mt-4">
+                    <div className="form-row">
+                      <div className="col-md-12 ">
+                        <div className="media m-0">
+                          <label>Rating</label>
+                          <div className="media-body ml-3">
+                            {/* <div className="rating three-star">
                                                         <i className="fa fa-star"></i>
                                                         <i className="fa fa-star"></i>
                                                         <i className="fa fa-star"></i>
                                                         <i className="fa fa-star"></i>
                                                         <i className="fa fa-star"></i>
                                                     </div> */}
-                          {/* Rating Stars */}
-                          <StarRatings
-                            rating={this.state.rating}
-                            starRatedColor="orange"
-                            starDimension="20px"
-                            changeRating={this.changeRating}
-                            numberOfStars={5}
-                            name="rating"
-                          />
+                            {/* Rating Stars */}
+                            <StarRatings
+                              rating={this.state.rating}
+                              starRatedColor="orange"
+                              starDimension="20px"
+                              changeRating={this.changeRating}
+                              numberOfStars={5}
+                              name="rating"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-md-6">
+                        <label htmlFor="review">Review</label>
+                        <textarea
+                          className="form-control"
+                          placeholder="Wrire Your Testimonial Here"
+                          id="exampleFormControlTextarea1"
+                          rows="6"
+                          value={this.state.testimonial}
+                          name="testimonial"
+                          onChange={this.handleChange}
+                        />
+                      </div>
+                      <div className="col-md-12">
+                        <button
+                          className="btn btn-solid"
+                          onClick={() => this.sendReview(item)}
+                          type="button"
+                        >
+                          Submit Your Review
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                ) : (
+                  <section className="cart-section section-b-space">
+                    <div className="container">
+                      <div className="row">
+                        <div className="col-sm-12">
+                          <div>
+                            <div className="col-sm-12 empty-cart-cls text-center">
+                              <h3>
+                                <strong>Goto my order to check</strong>
+                              </h3>
+                              <Link
+                                // to={`${process.env.PUBLIC_URL}/left-sidebar/collection`}
+                                to={`/my-order`}
+                                className="btn btn-solid"
+                              >
+                                My Order
+                              </Link>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
-                    <div className="col-md-6">
-                      <label htmlFor="name">Name</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="name"
-                        value={this.state.name}
-                        placeholder="Enter Your name"
-                        required
-                        name="name"
-                        onChange={this.handleChange}
-                      />
-                    </div>
-                    <div className="col-md-6">
-                      <label htmlFor="email">Email</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="email"
-                        value={this.state.email}
-                        placeholder="Email"
-                        required
-                        name="email"
-                        onChange={this.handleChange}
-                      />
-                    </div>
-                    <div className="col-md-12">
-                      <label htmlFor="review">Review Title</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="review"
-                        value={this.state.title}
-                        placeholder="Enter your Review Subjects"
-                        required
-                        name="title"
-                        onChange={this.handleChange}
-                      />
-                    </div>
-                    <div className="col-md-12">
-                      <label htmlFor="review">Review Title</label>
-                      <textarea
-                        className="form-control"
-                        placeholder="Wrire Your Testimonial Here"
-                        id="exampleFormControlTextarea1"
-                        rows="6"
-                        value={this.state.testimonial}
-                        name="testimonial"
-                        onChange={this.handleChange}
-                      />
-                    </div>
-                    <div className="col-md-12">
-                      <button
-                        className="btn btn-solid"
-                        onClick={() => this.sendReview(item)}
-                        type="button"
-                      >
-                        Submit Your Review
-                      </button>
-                    </div>
-                  </div>
-                </form>
+                  </section>
+                )}
               </TabPanel>
             </Tabs>
           </div>

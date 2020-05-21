@@ -11,7 +11,7 @@ class ProductItem extends Component {
     let id = this.props.id;
     API.get(`/products/${id}`)
       .then((res) => {
-        this.setState({ product: res.data[0] });
+        if (res.data.length != 0) this.setState({ product: res.data[0] });
       })
       .catch((err) => console.log("ER", err));
   }
@@ -23,9 +23,9 @@ class ProductItem extends Component {
         <img
           src={product.images ? img[0] : "/assets/images/product/1.jpg"}
           alt="Product-Img"
-          style={{ height: "13%" }}
+          style={{ height: '90px' ,width:'80px' }}
         />
-        <h3>{product.name} </h3>
+        <h5>{product.name ? product.name : "Product"}</h5>
       </>
     );
   }

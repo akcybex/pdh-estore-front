@@ -67,8 +67,8 @@ class Root extends React.Component {
                                     <Route path={"/collection/brochure-designs/:category"} component={Brochures} />
 
                                     {/*Routes For Single Product*/}
-                                    <Route path={"/left-sidebar/product/:id"} component={LeftSideBar} />
-
+                                    <Route path={"/left-sidebar/product/:id/:review?"} component={LeftSideBar} />
+                            
                                     <Route path={"/pages/about-us"} component={aboutUs} />
                                     <Route path={"/pages/contact"} component={Contact} />
                                     {/*New Auth Private and Protected Routes */}

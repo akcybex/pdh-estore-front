@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Breadcrumb from "../common/breadcrumb";
 import API from "../../utils/api";
 import { connect } from "react-redux";
+import ProductItem from "./product-item";
 class MyOrder extends Component {
   constructor(props) {
     super(props);
@@ -38,11 +39,17 @@ class MyOrder extends Component {
                     </thead>
                     {order.map((item, index) => {
                       let address = JSON.parse(item.billing_address);
+                      let orderItems = JSON.parse(item.order_items);
                       return (
                         <tbody key={index}>
                           <tr>
                             <td>{index + 1}</td>
-                            <td>{JSON.parse(item.order_items).length}</td>
+                            <td>
+                              <ProductItem
+                                items={orderItems}
+                                status={item.status}
+                              />
+                            </td>
                             <td>
                               <h2>
                                 {this.props.symbol}

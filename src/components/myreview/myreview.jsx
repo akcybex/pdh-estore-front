@@ -15,6 +15,7 @@ class MyReview extends Component {
     let user = JSON.parse(localStorage.getItem("logged"));
     API.get(`reviews/${user && user.id}/user`)
       .then((res) => {
+        console.log('R', res)
         this.setState({ reviews: res.data });
       })
       .catch((err) => console.log("ER", err));
@@ -33,7 +34,6 @@ class MyReview extends Component {
                     <thead>
                       <tr className="table-head">
                         <th scope="col">Product</th>
-                        <th scope="col">User Detail</th>
                         <th scope="col">Rating</th>
                         <th scope="col">Rewiew</th>
                       </tr>
@@ -45,10 +45,6 @@ class MyReview extends Component {
                             <td>
                               {" "}
                               <ProductItem id={item.product_id} />
-                            </td>
-                            <td>
-                              <p>{item.name}</p>
-                              <p>{item.email}</p>
                             </td>
                             <td>{item.rating}/5</td>
                             <td>
