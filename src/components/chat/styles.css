@@ -16,7 +16,8 @@
   flex-grow: 8;
 }
 .user-detail {
-  flex-grow: 2;
+  flex-grow: 1;
+  border-left: 1px solid lightgray;
 }
 /* Conversation */
 .c-header {
@@ -35,7 +36,7 @@
   outline: none;
 }
 .c-list {
-    height: 620px;
+  height: 620px;
   border-right: 1px solid lightgray;
 }
 .c-item {
@@ -53,4 +54,23 @@
 .c-name {
   display: flex;
   justify-content: space-between;
+}
+/* User Detail */
+.d-box {
+  display: flex;
+  height: 699px;
+  justify-content: center;
+  align-items: center;
+}
+.d-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+.d-img {
+  height: 120px;
+  width: 120px;
+  border-radius: 60px;
 }
