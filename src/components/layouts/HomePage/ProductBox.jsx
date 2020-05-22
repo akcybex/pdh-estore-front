@@ -29,7 +29,12 @@ class ProductBox extends Component {
       onAddToWishlistClicked,
     } = this.props;
     const { user } = this.state;
+    console.log("p", product);
     let RatingStars = [];
+    // if (product.rating == null) {
+    //   product.rating = 1;
+    // }
+    product.rating = 4;
     for (var i = 0; i < product.rating; i++) {
       RatingStars.push(<i className="fa fa-star" key={i} />);
     }

@@ -57,9 +57,10 @@ class ProductListItem extends Component {
       onAddToCartClicked,
       onAddToWishlistClicked,
     } = this.props;
-    const { open ,user } = this.state;
+    const { open, user } = this.state;
 
     let RatingStars = [];
+    product.rating = 4;
     for (var i = 0; i < product.rating; i++) {
       RatingStars.push(<i className="fa fa-star" key={i} />);
     }
@@ -98,7 +99,7 @@ class ProductListItem extends Component {
             <a
               href="javascript:void(0)"
               title="Add to Wishlist"
-              onClick={()=> onAddToWishlistClicked(product,user)}
+              onClick={() => onAddToWishlistClicked(product, user)}
             >
               <i className="fa fa-heart" aria-hidden="true" />
             </a>
@@ -292,7 +293,11 @@ class ProductListItem extends Component {
                         <button
                           className="btn btn-solid"
                           onClick={() =>
-                            onAddToCartClicked(product, this.state.quantity, user)
+                            onAddToCartClicked(
+                              product,
+                              this.state.quantity,
+                              user
+                            )
                           }
                         >
                           add to cart

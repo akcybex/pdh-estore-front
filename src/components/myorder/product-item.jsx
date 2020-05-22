@@ -14,7 +14,7 @@ class ProductItem extends Component {
                 alt="Product-Img"
                 style={{ height: "70px", width: "60px" }}
               />
-              {status == "Delivered" && (
+              {(status == "Delivered" || "Shipped") && (
                 <Link
                   style={{
                     position: "absolute",
