@@ -4,8 +4,9 @@
 .flex-container {
   display: flex;
   border: 1px lightgray solid;
-  height: 700px;
+  height: 620px;
   margin: 10px auto;
+  padding-bottom: 40px;
 }
 
 .conversation {
@@ -36,7 +37,7 @@
   outline: none;
 }
 .c-list {
-  height: 620px;
+  height: 540px;
   border-right: 1px solid lightgray;
 }
 .c-item {
@@ -58,7 +59,7 @@
 /* User Detail */
 .d-box {
   display: flex;
-  height: 699px;
+  height: 617px;
   justify-content: center;
   align-items: center;
 }
@@ -67,10 +68,18 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
 }
 .d-img {
   height: 120px;
   width: 120px;
   border-radius: 60px;
+}
+/* Chatting */
+.composer {
+  display: flex;
+  flex: 1;
+  padding-top: 10px;
+}
+.image-upload > input {
+  display: none;
 }

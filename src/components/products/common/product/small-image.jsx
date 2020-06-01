@@ -16,9 +16,7 @@ class SmallImages extends Component {
 
   render() {
     const { item, settings } = this.props;
-
     var productsnav = settings;
-    // let img= item.images.split(',');
     let img = item.images ? item.images.split(",") : [];
 
     return (
@@ -30,27 +28,28 @@ class SmallImages extends Component {
             ref={(slider) => (this.slider2 = slider)}
             className="slider-nav"
           >
-            {item.images
-              ? img.map((vari, index) => (
-                  <div key={index}>
-                    <img
-                      src={`${vari.images}`}
-                      key={index}
-                      alt=""
-                      className="img-fluid"
-                    />
-                  </div>
-                ))
-              : img.map((vari, index) => (
-                  <div key={index}>
-                    <img
-                      src={`${vari}`}
-                      key={index}
-                      alt=""
-                      className="img-fluid"
-                    />
-                  </div>
-                ))}
+            {img.length > 1 &&
+              img.map((vari, index) => (
+                <div key={index}>
+                  <img
+                    src={`${vari}`}
+                    key={index}
+                    alt=""
+                    className="img-fluid"
+                  />
+                </div>
+              ))
+            // : img.map((vari, index) => (
+            //     <div key={index}>
+            //       <img
+            //         src={`${vari}`}
+            //         key={index}
+            //         alt=""
+            //         className="img-fluid"
+            //       />
+            //     </div>
+            //   ))
+            }
           </Slider>
         </div>
       </div>

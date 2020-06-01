@@ -43,7 +43,8 @@ import orderSuccess from './components/checkout/success-page'
 import MyOrder from './components/myorder/myorder'
 import MyReview from './components/myreview/myreview'
 import SearchResult from './components/pages/search-result'
-import Messages from './components/chat'
+import Portfolios from './components/chat'
+import Conversation from './components/chat/messages'
 
 class Root extends React.Component {
 
@@ -68,13 +69,14 @@ class Root extends React.Component {
 
                                     {/*Routes For Single Product*/}
                                     <Route path={"/left-sidebar/product/:id/:review?"} component={LeftSideBar} />
-                            
+
                                     <Route path={"/pages/about-us"} component={aboutUs} />
                                     <Route path={"/pages/contact"} component={Contact} />
                                     {/*New Auth Private and Protected Routes */}
                                     <AuthRoute path={"/pages/login"} component={Login} />
                                     <AuthRoute path={"/pages/register"} component={Register} />
                                     <ProtectedRoute path={"/checkout"} component={checkOut} />
+                                    <ProtectedRoute path={"/conversation/:id"} component={Conversation} />
                                     {/*Routes For custom Features*/}
                                     <Route path={"/cart"} component={Cart} />
                                     <Route path={"/wishlist"} component={wishList} />
@@ -85,7 +87,7 @@ class Root extends React.Component {
                                     <Route path={"/my-order"} component={MyOrder} />
                                     <Route path={"/my-review"} component={MyReview} />
                                     <Route path={"/search-result/:name/:category_id?"} component={SearchResult} />
-                                    <Route path={"/messages"} component={Messages} />
+                                    <Route path={"/messages"} component={Portfolios} />
                                 </Layout>
                             </Switch>
                         </ScrollContext>

@@ -60,7 +60,10 @@ class ProductListItem extends Component {
     const { open, user } = this.state;
 
     let RatingStars = [];
-    product.rating = 4;
+    if (product.rating == null) {
+      product.rating = 1;
+    }
+    // product.rating = 4;
     for (var i = 0; i < product.rating; i++) {
       RatingStars.push(<i className="fa fa-star" key={i} />);
     }
