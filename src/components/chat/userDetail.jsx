@@ -35,7 +35,10 @@ export default class UserDetail extends Component {
                 {designer.name}
               </p>
               <p>Experience: {designer.experience}</p>
-              <p>Skills: {designer.skills}</p>
+              <h4>Skills</h4>
+              <p style={{ maxWidth: "220px", wordWrap: "break-word" }}>
+                {designer.skills}
+              </p>
             </div>
           </div>
         </div>
