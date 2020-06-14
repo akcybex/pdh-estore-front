@@ -143,13 +143,10 @@ export const getTrendingTagCollection = (products, type, tag) => {
 
 // Get Trending Collection
 export const getTrendingCollection = (products, type) => {
-    // console.log('TRAND', products,'T', type)
     const items = products.filter(product => {
-        // return product.category === type;
-        // console.log('*', product)
-        return product;
+        return product.category_id === 6;
+
     })
-    // console.log('***', items)
     return items.slice(0, 8)
 }
 

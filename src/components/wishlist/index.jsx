@@ -187,6 +187,10 @@ class wishList extends Component {
                   <Link
                     to={`${process.env.PUBLIC_URL}/checkout`}
                     className="btn btn-solid"
+                    onClick={() =>
+                      !localStorage.getItem("logged") &&
+                      alert("Login Required!")
+                    }
                   >
                     check out
                   </Link>

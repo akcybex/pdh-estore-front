@@ -96,10 +96,8 @@ class ProductListing extends Component {
   }
 }
 const mapStateToProps = (state, ownProps) => {
-  //   console.log("STATE", state, "OWN", ownProps);
   return {
     products: getVisibleproducts(state.data, state.filters, ownProps.category),
-    //   products: state.data,
     symbol: state.data.symbol,
   };
 };
