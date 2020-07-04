@@ -63,7 +63,7 @@ class Footer extends Component {
                                 <div className="sub-title">
                                     <div className="footer-title">
                                         <h4>Categories</h4>
-                                        <hr color='#fd7e14' width="65%" Align="left"/>
+                                        <hr color='#fd7e14' width="65%" align="left"/>
                                     </div>
                                     <div className="footer-contant">
                                         <ul>
@@ -80,7 +80,7 @@ class Footer extends Component {
                                 <div className="sub-title">
                                     <div className="footer-title">
                                         <h4>why we choose</h4>
-                                        <hr color='#fd7e14' width="85%" Align="left"/>
+                                        <hr color='#fd7e14' width="85%" align="left"/>
                                     </div>
                                     <div className="footer-contant">
                                         <ul>

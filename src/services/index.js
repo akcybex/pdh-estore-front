@@ -147,7 +147,16 @@ export const getTrendingCollection = (products, type) => {
         return product.category_id === 6;
 
     })
-    return items.slice(0, 8)
+    // return items.slice(0, 8)
+    return items;
+}
+// Get All Products
+export const getAllProdcuts = (products) => {
+    const items = products.filter(product => {
+        return product.category_id !== 6;
+
+    })
+    return items;
 }
 
 // Get Special 5 Collection
